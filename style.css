@@ -1,0 +1,172 @@
+/* VARIABLES DE COLOR (Tema Oscuro) */
+:root {
+    --bg-dark: #121418;
+    --bg-panel: #1e2228;
+    --primary: #3b82f6; /* Azul brillante de los botones */
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border: #374151;
+    --sidebar-width: 250px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow: hidden; /* Controlamos el scroll por panel */
+}
+
+/* LAYOUT PRINCIPAL */
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* BARRA LATERAL */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--bg-panel);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+    padding: 20px 0;
+}
+
+.logo-container {
+    padding: 0 20px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img { height: 35px; width: auto; }
+.logo-text { font-weight: 600; font-size: 1.1rem; }
+
+.nav-links li {
+    list-style: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links li:hover a,
+.nav-links li.active a {
+    color: var(--primary);
+}
+
+.nav-links li.active {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-left-color: var(--primary);
+}
+
+/* CONTENIDO PRINCIPAL */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Scroll para el área de contenido */
+}
+
+/* HEADER SUPERIOR */
+.top-header {
+    background-color: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.search-bar {
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 350px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+}
+
+/* ESTILOS COMUNES PARA VISTAS (Paneles y Tarjetas) */
+.view-container-padding {
+    padding: 30px;
+}
+
+.card {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+h1.view-title { font-size: 2rem; margin-bottom: 10px; }
+h2.view-subtitle { color: var(--text-muted); font-weight: 400; margin-bottom: 30px; }
+
+button.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+button.btn-primary:hover { opacity: 0.9; }
+.marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+}
+.marker.accident { background-color: #f44336; } /* Rojo */
+.marker.closed { background-color: #ff9800; } /* Naranja */
