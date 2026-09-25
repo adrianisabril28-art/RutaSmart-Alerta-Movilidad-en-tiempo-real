@@ -1,20 +1,21 @@
 import express from "express";
 import http from "http";
+import envs from "./config/environment-vars";
 
 export class ServerBootstrap {
-    app: express.Application;
+  app: express.Application;
 
-    constructor(app: express.Application) {
-        this.app = app;
-    }
+  constructor(app: express.Application) {
+    this.app = app;
+  }
 
-    initialize() {
-        const server = http.createServer(this.app);
+  initialize() {
+    const server = http.createServer(this.app);
 
-        const PORT = Number(process.env.PORT ?? 4000);
+    const PORT = envs.PORT;
 
-        server.listen(PORT, () => {
-            console.log(`Server running at http://localhost:${PORT}`);
-        });
-    }
+    server.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
+  }
 }

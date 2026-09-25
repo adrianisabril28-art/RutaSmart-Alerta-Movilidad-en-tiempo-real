@@ -1,10 +1,13 @@
-import express from "express";
-import http from "http";
+import app from "./app";
+import { ServerBootstrap } from "./bootstrap/ServerBootstrap";
+import { connectDB } from "./bootstrap/config/database";
 
-const app = express();
+const startServer = async () => {
+  await connectDB();
 
-const server = http.createServer(app);
+  const serverBootstrap = new ServerBootstrap(app.getApp());
 
-server.listen(4000, () => {
-  console.log("Server started on http://localhost:4000");
-});
+  serverBootstrap.initialize();
+};
+
+startServer();
