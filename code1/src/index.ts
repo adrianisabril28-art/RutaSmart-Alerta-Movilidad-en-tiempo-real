@@ -1,6 +1,10 @@
-import App from "./app";
-import { ServerBootstrap } from "./bootstrap/ServerBootstrap";
+import express from "express";
+import http from "http";
 
-const serverBootstrap = new ServerBootstrap(App.getApp());
+const app = express();
 
-serverBootstrap.initialize();
+const server = http.createServer(app);
+
+server.listen(4000, () => {
+  console.log("Server started on http://localhost:4000");
+});
