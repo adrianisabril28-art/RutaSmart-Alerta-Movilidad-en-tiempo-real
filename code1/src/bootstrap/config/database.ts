@@ -1,16 +1,19 @@
 import { DataSource } from "typeorm";
 import envs from "./environment-vars";
+
 import { User } from "../../infrastructure/entities/User";
+import { TipoIncidente } from "../../infrastructure/entities/TipoIncidente";
+import { Incidente } from "../../infrastructure/entities/Incidente";
 
 export const AppDataSource = new DataSource({
-  type: "mysql",
+  type: "postgres",
   host: envs.DB_HOST,
   port: envs.DB_PORT,
   username: envs.DB_USER,
   password: envs.DB_PASSWORD,
   database: envs.DB_NAME,
   synchronize: true,
-  entities: [User],
+  entities: [User, TipoIncidente, Incidente],
 });
 
 export const connectDB = async (): Promise<void> => {

@@ -46,7 +46,24 @@ export class UserApplication {
   async getUserByEmail(email: string): Promise<User | null> {
     return await this.port.getUserByEmail(email);
   }
+  
+async login(email: string, password: string): Promise<User | null> {
+  const user = await this.port.getUserByEmail(email);
 
+  if (!user) {
+    return null;
+  }
+
+  if (user.status !== 1) {
+    return null;
+  }
+
+  if (user.password !== password) {
+    return null;
+  }
+
+  return user;
+}
   async getAllUsers(): Promise<User[]> {
     return await this.port.getAllUsers();
   }

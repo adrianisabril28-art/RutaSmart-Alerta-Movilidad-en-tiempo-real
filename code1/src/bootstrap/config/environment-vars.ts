@@ -21,7 +21,7 @@ function validateEnvVars(
   const envSchema = Joi.object<ReturnEnvironmentVars>({
     PORT: Joi.number().default(3000),
     DB_HOST: Joi.string().required(),
-    DB_PORT: Joi.number().default(3306),
+    DB_PORT: Joi.number().default(5432),
     DB_USER: Joi.string().required(),
     DB_PASSWORD: Joi.string().allow("").default(""),
     DB_NAME: Joi.string().required(),
