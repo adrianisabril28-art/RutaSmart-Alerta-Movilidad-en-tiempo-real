@@ -77,12 +77,12 @@ export class UserAdapter implements UserPort {
 
   async getUserById(id: number): Promise<UserDomain | null> {
     const user = await this.userRepository.findOne({
-      where: { id },
+      where: { id, status: 1 },
     });
 
     if (!user) {
       return null;
-    }
+    } 
 
     return this.toDomain(user);
   }
