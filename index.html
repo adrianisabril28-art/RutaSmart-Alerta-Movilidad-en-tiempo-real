@@ -1,2 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RutaSmart Alerta | Bogotá</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">📍</span>
+            <div><strong>RutaSmart</strong><br><span>Alerta</span></div>
+        </div>
+
+        <nav class="menu">
+            <a href="#inicio" class="nav-link active">⌂ <span>Inicio</span></a>
+            <a href="#mapa" class="nav-link">◈ <span>Mapa</span></a>
+            <a href="#rutas" class="nav-link">➜ <span>Rutas</span></a>
+            <a href="#reportar" class="nav-link">⚠ <span>Reportar</span></a>
+            <a href="#estadisticas" class="nav-link">▥ <span>Estadísticas</span></a>
+            <a href="#alertas" class="nav-link">♧ <span>Alertas</span></a>
+        </nav>
+
+
+        <div class="sidebar-footer">
+            🌱 Ciudades más seguras y sostenibles
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <input id="busqueda" type="search"
+                   placeholder="🔎  Buscar dirección, lugar o ruta en Bogotá...">
+            <div class="user-area">
+                <span>🔔</span>
+                <span class="avatar">CI</span>
+            </div>
+        </header>
+         <section id="inicio" class="page-section">
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="eyebrow">MOVILIDAD EN BOGOTÁ</span>
+                    <h1>Información que transforma tu movilidad</h1>
+                    <p>Consulta el estado de la movilidad y encuentra
+                       alternativas antes de salir.</p>
+                    <div class="hero-buttons">
+                        <a href="#mapa" class="button primary">⌕ Explorar movilidad</a>
+                        <a href="#reportar" class="button outline">⚠ Reportar incidente</a>
+                    </div>
+                </div>
+            </div>
+<div class="section-heading">
+                <div>
+                    <h2>Estado general de la movilidad</h2>
+                    <p>Resumen demostrativo de la ciudad</p>
+                </div>
+                <span class="updated">● Panel de ejemplo</span>
+            </div>
+
+            <div class="status-grid">
+                <article class="status-card green">
+                    <div class="status-icon">↗</div>
+                    <div><p>Vías fluidas</p><h3>72%</h3>
+                    <small>Tránsito normal</small></div>
+                </article>
+                <article class="status-card yellow">
+                    <div class="status-icon">🚗</div>
+                    <div><p>Congestión moderada</p><h3>18%</h3>
+                    <small>Tráfico aumentado</small></div>
+                </article>
+                <article class="status-card orange">
+                    <div class="status-icon">⚠</div>
+                    <div><p>Congestión alta</p><h3>7%</h3>
+                    <small>Movilidad lenta</small></div>
+                </article>
