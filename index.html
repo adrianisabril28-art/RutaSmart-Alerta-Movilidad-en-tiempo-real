@@ -1,79 +1,254 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RutaSmart Alerta | Bogotá</title>
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RutaSmart Alerta | Bogotá</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
-<body>
-    <aside class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">📍</span>
-            <div><strong>RutaSmart</strong><br><span>Alerta</span></div>
-        </div>
+<body>  
+<aside class="sidebar">
+ <div class="logo">
+  <span class="logo-icon">📍</span>
+  <div><strong>RutaSmart</strong><br><span>Alerta</span></div>
+ </div>
 
-        <nav class="menu">
-            <a href="#inicio" class="nav-link active">⌂ <span>Inicio</span></a>
-            <a href="#mapa" class="nav-link">◈ <span>Mapa</span></a>
-            <a href="#rutas" class="nav-link">➜ <span>Rutas</span></a>
-            <a href="#reportar" class="nav-link">⚠ <span>Reportar</span></a>
-            <a href="#estadisticas" class="nav-link">▥ <span>Estadísticas</span></a>
-            <a href="#alertas" class="nav-link">♧ <span>Alertas</span></a>
-        </nav>
+ <nav class="menu">
+  <a href="#inicio" class="nav-link active">⌂ <span>Inicio</span></a>
+  <a href="#mapa" class="nav-link">◈ <span>Mapa</span></a>
+  <a href="#rutas" class="nav-link">➜ <span>Rutas</span></a>
+  <a href="#reportar" class="nav-link">⚠ <span>Reportar</span></a>
+  <a href="#estadisticas" class="nav-link">▥ <span>Estadísticas</span></a>
+  <a href="#alertas" class="nav-link">♧ <span>Alertas</span></a>
+ </nav>
 
+ <div class="sidebar-footer">
+  🌱 Ciudades más seguras y sostenibles
+ </div>
+</aside>
 
-        <div class="sidebar-footer">
-            🌱 Ciudades más seguras y sostenibles
-        </div>
-    </aside>
+<main class="main-content">
+ <header class="topbar">
+  <input id="busqueda" type="search" placeholder="🔎  Buscar dirección, lugar o ruta en Bogotá...">
+  <div class="user-area">
+   <span>🔔</span>
+   <span class="avatar">CI</span>
+  </div>
+ </header>
 
-    <main class="main-content">
-        <header class="topbar">
-            <input id="busqueda" type="search"
-                   placeholder="🔎  Buscar dirección, lugar o ruta en Bogotá...">
-            <div class="user-area">
-                <span>🔔</span>
-                <span class="avatar">CI</span>
-            </div>
-        </header>
-         <section id="inicio" class="page-section">
-            <div class="hero">
-                <div class="hero-content">
-                    <span class="eyebrow">MOVILIDAD EN BOGOTÁ</span>
-                    <h1>Información que transforma tu movilidad</h1>
-                    <p>Consulta el estado de la movilidad y encuentra
-                       alternativas antes de salir.</p>
-                    <div class="hero-buttons">
-                        <a href="#mapa" class="button primary">⌕ Explorar movilidad</a>
-                        <a href="#reportar" class="button outline">⚠ Reportar incidente</a>
-                    </div>
-                </div>
-            </div>
-<div class="section-heading">
-                <div>
-                    <h2>Estado general de la movilidad</h2>
-                    <p>Resumen demostrativo de la ciudad</p>
-                </div>
-                <span class="updated">● Panel de ejemplo</span>
-            </div>
+ <section id="inicio" class="page-section">
+  <div class="hero">
+   <div class="hero-content">
+    <span class="eyebrow">MOVILIDAD EN BOGOTÁ</span>
+    <h1>Información que transforma tu movilidad</h1>
+    <p>Consulta el estado de la movilidad y encuentra alternativas antes de salir.</p>
+    <div class="hero-buttons">
+     <a href="#mapa" class="button primary">⌕ Explorar movilidad</a>
+     <a href="#reportar" class="button outline">⚠ Reportar incidente</a>
+    </div>
+   </div>
+  </div>
+  
+  <div class="section-heading">
+   <div>
+    <h2>Estado general de la movilidad</h2>
+    <p>Resumen demostrativo de la ciudad</p>
+   </div>
+  </div>
 
-            <div class="status-grid">
-                <article class="status-card green">
-                    <div class="status-icon">↗</div>
-                    <div><p>Vías fluidas</p><h3>72%</h3>
-                    <small>Tránsito normal</small></div>
-                </article>
-                <article class="status-card yellow">
-                    <div class="status-icon">🚗</div>
-                    <div><p>Congestión moderada</p><h3>18%</h3>
-                    <small>Tráfico aumentado</small></div>
-                </article>
-                <article class="status-card orange">
-                    <div class="status-icon">⚠</div>
-                    <div><p>Congestión alta</p><h3>7%</h3>
-                    <small>Movilidad lenta</small></div>
-                </article>
+  <div class="status-grid">
+   <article class="status-card green">
+    <div class="status-icon">↗</div>
+    <div><p>Vías fluidas</p><h3>72%</h3><small>Tránsito normal</small></div>
+   </article>
+   <article class="status-card yellow">
+    <div class="status-icon">🚗</div>
+    <div><p>Congestión moderada</p><h3>18%</h3><small>Tráfico aumentado</small></div>
+   </article>
+   <article class="status-card orange">
+    <div class="status-icon">⚠</div>
+    <div><p>Congestión alta</p><h3>7%</h3><small>Movilidad lenta</small></div>
+   </article>
+   <article class="status-card red">
+    <div class="status-icon">⊖</div>
+    <div>
+     <p>Vías cerradas</p>
+     <h3>3%</h3>
+     <small>Cierres de ejemplo</small>
+    </div>
+   </article>
+  </div>
+ </section>
+
+ <section id="mapa" class="page-section">
+  <div class="section-heading">
+   <div>
+    <h2>Mapa de movilidad en Bogotá</h2>
+    <p>Explora el mapa de la ciudad</p>
+   </div>
+  </div>
+
+  <div class="map-layout">
+   <div id="map"></div>
+   <aside class="map-panel">
+    <h3>Estado de movilidad</h3>
+    <p>🟢 Fluida</p>
+    <p>🟡 Moderada</p>
+    <p>🟠 Congestionada</p>
+    <p>🔴 Crítica</p>
+    <hr>
+     <h3>Tipos de incidentes</h3>
+<p>🚗 Accidentes</p>
+<p>🚧 Obras</p>
+<p>🚦 Semáforos dañados</p>
+<p>⛔ Cierres viales</p>
+<p>🌧️ Inundaciones</p>
+<p>🚗 Congestión</p>
+<small>Indicadores ilustrativos; no representan datos en tiempo real.</small>
+</div>
+ </section>
+
+ <section id="rutas" class="page-section">
+  <div class="section-heading">
+   <div>
+    <h2>Planificar ruta</h2>
+    <p>Desplazamientos dentro de Bogotá</p>
+   </div>
+  </div>
+
+  <div class="content-card route-card">
+   <form id="formularioRuta">
+    <label for="origen">Punto de partida</label>
+    <input type="text" id="origen" required placeholder="Ej. Portal de las Américas">
+
+    <label for="destino">Destino</label>
+    <input type="text" id="destino" required placeholder="Ej. Universidad Uniminuto">
+
+    <button class="button primary full-width" type="submit">Calcular ruta</button>
+   </form>
+
+   <div id="resultadoRuta" class="result-box">
+    Ingresa tu origen y destino.
+   </div>
+  </div>
+ </section>
+
+ <section id="reportar" class="page-section">
+  <div class="section-heading">
+   <div>
+    <h2>Reportar incidente</h2>
+    <p>Informa sobre novedades de movilidad en Bogotá</p>
+   </div>
+  </div>
+  <div class="content-card">
+   <form id="formularioIncidente">
+    <label for="tipoIncidente">Tipo de incidente</label>
+    <select id="tipoIncidente" required>
+     <option value="">Selecciona una opción</option>
+     <option>Accidente</option>
+     <option>Obra</option>
+     <option>Semáforo dañado</option>
+     <option>Cierre vial</option>
+     <option>Inundación</option>
+     <option>Congestión</option>
+     <option>Otro</option>
+    </select>
+
+    <label for="ubicacion">Ubicación en Bogotá</label>
+    <input type="text" id="ubicacion" required placeholder="Ej. Avenida Boyacá con Calle 26">
+
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" rows="4" required placeholder="Cuéntanos qué está sucediendo..."></textarea>
+    
+    <button class="button primary full-width" type="submit">Enviar reporte</button>
+   </form>
+   <p id="resultadoReporte" role="status"></p>
+  </div>
+ </section>
+
+ <section id="estadisticas" class="page-section">
+  <div class="section-heading">
+   <div>
+    <h2>Estadísticas de movilidad</h2>
+    <p>Indicadores ilustrativos de Bogotá</p>
+   </div>
+  </div>
+
+  <div class="stats-grid">
+   <article class="content-card">
+    <span>Reportes registrados</span>
+    <h2 id="totalReportes">0</h2>
+   </article>
+
+   <article class="content-card">
+    <span>Incidentes reportados</span>
+    <h2 id="totalIncidentes">0</h2>
+   </article>
+
+   <article class="content-card">
+    <span>Estado de las vías</span>
+    <h2>Por consultar</h2>
+   </article>
+
+   <article class="content-card">
+    <span>Tiempo de recorrido</span>
+    <h2>Por calcular</h2>
+   </article>
+  </div>
+
+  <div class="content-card">
+   <h3>Tipos de incidentes</h3>
+   <p>🚗 Accidentes</p>
+   <p>🚧 Obras</p>
+  </div>
+ </section>
+
+ <section id="alertas" class="page-section">
+  <div class="section-heading">
+   <div>
+    <h2>Alertas de movilidad</h2>
+    <p>Novedades de movilidad en Bogotá</p>
+   </div>
+  </div>
+
+  <div id="listaAlertas" class="alerts-list">
+   <article class="alert-card">
+    <span class="alert-symbol">🔔</span>
+    <div>
+     <h3>Sin alertas registradas</h3>
+     <p>Cuando se registren reportes, podremos mostrarlos aquí.</p>
+    </div>
+   </article>
+</div>
+<div>
+<strong>38 min</strong>
+<p>10,8 km</p>
+<a href="#mapa" class="button outline">Ver en mapa</a>
+</div>
+</article>
+
+<article class="ruta-card rapida">
+<div>
+<span>🔴 Ruta rápida</span>
+<h4>Ruta 3</h4>
+<p>Posibles incidentes en el recorrido.</p>
+</div>
+<div>
+<strong>27 min</strong>
+<p>11,2 km</p>
+<a href="#mapa" class="button outline">Ver en mapa</a>
+</div>
+</article>
+</div>
+</section>
+<div id="listaAlertas" class="alerts-list">
+<article class="alert-card">
+<span class="alert-symbol">🔔</span>
+<div>
+<h3>Sin alertas registradas</h3>
+<p>Cuando se registren reportes, podremos mostrarlos aquí.</p>
+</div>
+</article>
+</div>
+</section>
