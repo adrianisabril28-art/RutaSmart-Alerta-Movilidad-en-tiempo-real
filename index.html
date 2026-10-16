@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -379,5 +380,446 @@ No corresponden a rutas calculadas en tiempo real.
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="script.js" defer></script>
 
+</body>
+</html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08111f">
+
+  <title>RutaSmart | Movilidad inteligente</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Estilos del mapa -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+      <a href="#inicio" class="logo">
+        <span class="logo-icon">R</span>
+        <span>
+          <strong>RutaSmart</strong>
+          <small>Movilidad inteligente</small>
+        </span>
+      </a>
+
+      <div class="sidebar-label">MENÚ PRINCIPAL</div>
+
+      <nav class="menu">
+        <a href="#inicio" class="nav-link active">
+          <span>⌂</span> Inicio
+        </a>
+        <a href="#mapa" class="nav-link">
+          <span>◎</span> Mapa en tiempo real
+        </a>
+        <a href="#rutas" class="nav-link">
+          <span>↗</span> Planificar ruta
+        </a>
+        <a href="#reportar" class="nav-link">
+          <span>＋</span> Reportar incidente
+        </a>
+        <a href="#estadisticas" class="nav-link">
+          <span>▥</span> Estadísticas
+        </a>
+        <a href="#alertas" class="nav-link">
+          <span>♧</span> Alertas
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span class="connection-dot"></span>
+        <div>
+          <strong>RutaSmart activa</strong>
+          <small>Panel de movilidad</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+
+      <!-- BARRA SUPERIOR -->
+      <header class="topbar">
+        <div>
+          <p class="topbar-label">PLATAFORMA DE MOVILIDAD</p>
+          <h2>Panel de control</h2>
+        </div>
+
+        <div class="user-area">
+          <span class="live-indicator">● En línea</span>
+          <div class="avatar">RS</div>
+        </div>
+      </header>
+
+      <!-- INICIO -->
+      <section id="inicio" class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">
+            <span class="connection-dot"></span>
+            MOVILIDAD URBANA INTELIGENTE
+          </span>
+
+          <h1>Muévete mejor.<br> <span>Llega más lejos.</span></h1>
+
+          <p>
+            Consulta incidentes viales, explora el mapa y planifica
+            tus desplazamientos con RutaSmart.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#mapa" class="button primary">Explorar mapa ↗</a>
+            <a href="#reportar" class="button outline">＋ Reportar incidente</a>
+          </div>
+        </div>
+
+        <div class="hero-decoration" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit orbit-three"></div>
+          <div class="orbit-center">RS</div>
+        </div>
+      </section>
+
+      <!-- ESTADOS VIALES -->
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">RESUMEN</p>
+            <h2>Estado de la movilidad</h2>
+          </div>
+          <span class="section-note">Datos de esta sesión</span>
+        </div>
+
+        <div class="status-grid">
+          <article class="status-card green">
+            <div class="status-icon">✓</div>
+            <div>
+              <p>Vías despejadas</p>
+              <h3>Sin datos</h3>
+              <small>Información por actualizar</small>
+            </div>
+          </article>
+
+          <article class="status-card yellow">
+            <div class="status-icon">↗</div>
+            <div>
+              <p>Congestiones</p>
+              <h3 id="totalCongestiones">0</h3>
+              <small>Reportadas en esta sesión</small>
+            </div>
+          </article>
+
+          <article class="status-card orange">
+            <div class="status-icon">!</div>
+            <div>
+              <p>Incidentes</p>
+              <h3 id="totalIncidentes">0</h3>
+              <small>Reportados en esta sesión</small>
+            </div>
+          </article>
+
+          <article class="status-card red">
+            <div class="status-icon">⌖</div>
+            <div>
+              <p>Reportes registrados</p>
+              <h3 id="totalReportes">0</h3>
+              <small>En esta sesión</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- MAPA -->
+      <section id="mapa" class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">EXPLORACIÓN URBANA</p>
+            <h2>Mapa de movilidad</h2>
+            <p class="section-description">
+              Explora Bogotá y consulta la ubicación de los reportes.
+            </p>
+          </div>
+          <span class="map-status">
+            <span class="connection-dot"></span>
+            Mapa interactivo
+          </span>
+        </div>
+
+        <div class="map-layout">
+          <div class="map-card">
+            <div class="map-toolbar">
+              <div>
+                <strong>Bogotá, Colombia</strong>
+                <small>Vista general de la ciudad</small>
+              </div>
+              <button type="button" id="centrarMapa" class="icon-button"
+                aria-label="Centrar mapa" title="Centrar mapa">⌖</button>
+            </div>
+
+            <div id="map" aria-label="Mapa interactivo de Bogotá"></div>
+
+            <div class="map-legend">
+              <span><i class="legend-dot green-dot"></i> Vía despejada</span>
+              <span><i class="legend-dot yellow-dot"></i> Congestión</span>
+              <span><i class="legend-dot red-dot"></i> Incidente</span>
+            </div>
+          </div>
+
+          <aside class="map-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">ACTIVIDAD</p>
+                <h3>Últimos reportes</h3>
+              </div>
+              <span class="panel-count" id="contadorReportes">0</span>
+            </div>
+
+            <div id="listaReportes" class="report-list">
+              <div class="empty-state">
+                <span class="empty-icon">◎</span>
+                <p>Aún no hay reportes.</p>
+                <small>Los reportes de esta sesión aparecerán aquí.</small>
+              </div>
+            </div>
+
+            <a href="#reportar" class="panel-action">
+              Crear un reporte <span>→</span>
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- RUTAS -->
+      <section id="rutas" class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">PLANIFICACIÓN</p>
+            <h2>Planifica tu ruta</h2>
+            <p class="section-description">
+              Ingresa un origen y un destino para visualizar el trayecto.
+            </p>
+          </div>
+        </div>
+
+        <div class="route-layout">
+          <form id="formularioRuta" class="content-card">
+            <div class="card-title">
+              <span class="card-icon">↗</span>
+              <div>
+                <h3>Tu próximo recorrido</h3>
+                <p>Escribe los lugares que deseas consultar.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="origen">Punto de origen</label>
+              <input
+                type="text"
+                id="origen"
+                name="origen"
+                placeholder="Ej. Centro de Bogotá"
+                required
+              >
+            </div>
+
+            <div class="route-connector">
+              <span></span>
+            </div>
+
+            <div class="form-group">
+              <label for="destino">Punto de destino</label>
+              <input
+                type="text"
+                id="destino"
+                name="destino"
+                placeholder="Ej. Aeropuerto El Dorado"
+                required
+              >
+            </div>
+
+            <button type="submit" class="button primary full-button">
+              Mostrar puntos en el mapa →
+            </button>
+
+            <p id="resultadoRuta" class="form-message" aria-live="polite"></p>
+          </form>
+
+          <div class="content-card route-info">
+            <div class="route-info-icon">⌖</div>
+            <p class="section-kicker">MOVILIDAD CONECTADA</p>
+            <h3>Explora tu recorrido</h3>
+            <p>
+              Esta versión inicial permite ubicar los puntos ingresados
+              en el mapa. El cálculo automático de rutas y tiempos requiere
+              integrar un servicio de rutas.
+            </p>
+            <div class="info-divider"></div>
+            <div class="info-row">
+              <span>Mapa interactivo</span>
+              <strong class="available-label">Disponible</strong>
+            </div>
+            <div class="info-row">
+              <span>Ruta automática</span>
+              <strong class="pending-label">Pendiente</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REPORTAR INCIDENTE -->
+      <section id="reportar" class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">PARTICIPA</p>
+            <h2>Reportar un incidente</h2>
+            <p class="section-description">
+              Ayuda a mantener informada a la comunidad sobre las novedades viales.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-card report-form-card">
+          <div class="card-title">
+            <span class="card-icon warning-icon">!</span>
+            <div>
+              <h3>Información del incidente</h3>
+              <p>Completa los campos para registrar un reporte local.</p>
+            </div>
+          </div>
+
+          <form id="formularioIncidente">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="tipoIncidente">Tipo de incidente</label>
+                <select id="tipoIncidente" name="tipoIncidente" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="Accidente">Accidente</option>
+                  <option value="Congestión">Congestión vehicular</option>
+                  <option value="Manifestación">Manifestación</option>
+                  <option value="Cierre vial">Cierre vial</option>
+                  <option value="Obras">Obras en la vía</option>
+                  <option value="Inundación">Inundación</option>
+                  <option value="Zona insegura">Zona insegura</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="ubicacion">Ubicación o dirección</label>
+                <input
+                  type="text"
+                  id="ubicacion"
+                  name="ubicacion"
+                  placeholder="Ej. Calle 26 con carrera 30"
+                  required
+                >
+              </div>
+
+              <div class="form-group full-width">
+                <label for="descripcion">Descripción</label>
+                <textarea
+                  id="descripcion"
+                  name="descripcion"
+                  rows="4"
+                  placeholder="Describe brevemente lo que sucede..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <p>Los reportes de esta versión son temporales.</p>
+              <button type="submit" class="button primary">
+                Registrar reporte →
+              </button>
+            </div>
+
+            <p id="resultadoReporte" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ESTADÍSTICAS -->
+      <section id="estadisticas" class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">INDICADORES</p>
+            <h2>Resumen de actividad</h2>
+            <p class="section-description">
+              Conteo de los reportes creados durante esta sesión.
+            </p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="content-card stat-card">
+            <span class="stat-icon blue-stat">▤</span>
+            <p>Total de reportes</p>
+            <h3 id="estadisticaReportes">0</h3>
+            <small>Registros de esta sesión</small>
+          </article>
+
+          <article class="content-card stat-card">
+            <span class="stat-icon orange-stat">⚠</span>
+            <p>Incidentes viales</p>
+            <h3 id="estadisticaIncidentes">0</h3>
+            <small>Incidentes reportados</small>
+          </article>
+
+          <article class="content-card stat-card">
+            <span class="stat-icon teal-stat">↗</span>
+            <p>Congestiones</p>
+            <h3 id="estadisticaCongestiones">0</h3>
+            <small>Reportes de congestión</small>
+          </article>
+        </div>
+      </section>
+
+      <!-- ALERTAS -->
+      <section id="alertas" class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">NOTIFICACIONES</p>
+            <h2>Centro de alertas</h2>
+            <p class="section-description">
+              Consulta los reportes registrados durante esta sesión.
+            </p>
+          </div>
+        </div>
+
+        <div id="listaAlertas" class="alerts-list">
+          <div class="content-card empty-alerts">
+            <span class="empty-icon">♧</span>
+            <div>
+              <h3>No hay alertas por ahora</h3>
+              <p>Cuando registres un incidente, aparecerá aquí.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PIE DE PÁGINA -->
+      <footer class="page-footer">
+        <div class="footer-logo">
+          <span class="logo-icon small-logo">R</span>
+          <strong>RutaSmart</strong>
+        </div>
+        <p>Proyecto académico · Movilidad urbana inteligente</p>
+        <span>© 2026 RutaSmart</span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Librerías externas: primero Leaflet, después nuestro JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
