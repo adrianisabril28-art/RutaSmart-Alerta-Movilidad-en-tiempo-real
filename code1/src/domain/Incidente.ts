@@ -6,3 +6,4 @@ export interface Incidente {
   fecha: Date;
   status: number;
 }
+
