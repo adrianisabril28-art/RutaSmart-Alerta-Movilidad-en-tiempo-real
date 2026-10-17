@@ -37,4 +37,6 @@ router.delete(
   (req, res) => incidenteController.deleteIncidente(req, res)
 );
 
+
 export default router;
+import iaRoutes from "./IARoutes";
