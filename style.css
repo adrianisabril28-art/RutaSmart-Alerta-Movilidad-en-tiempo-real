@@ -684,7 +684,7 @@ textarea:focus-visible {
   height: 28px;
   place-items: center;
   border-radius: 9px;
-  background: rgba(34, 211, 197, 0.1);
+  background: rgba(78, 235, 222, 0.1);
   color: var(--primary);
   font-size: 12px;
   font-weight: 800;
@@ -707,7 +707,7 @@ textarea:focus-visible {
   width: 43px;
   height: 43px;
   place-items: center;
-  border: 1px solid rgba(34, 211, 197, 0.18);
+  border: 1px solid rgba(104, 231, 221, 0.18);
   border-radius: 14px;
   background: rgba(34, 211, 197, 0.06);
   color: var(--primary);
